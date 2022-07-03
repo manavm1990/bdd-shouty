@@ -1,22 +1,22 @@
 import { Given, Then, When } from "@cucumber/cucumber";
-import Person from "../../app/models/Person.js";
 import { expect } from "chai";
+import Person from "../../app/models/Person.js";
 
 Given(
-  "{person} is located/standing {int} meter(s) from Sean",
-  function (lucy, distance) {
+  "{listener} is located/standing {int} meter(s) from {shouter}",
+  function (_, distance, __) {
     this.lucy = new Person();
     this.sean = new Person();
     this.lucy.moveTo(distance);
   }
 );
 
-When("Sean shouts, {string}", function (message) {
+When("{shouter} shouts, {string}", function (_, message) {
   this.sean.shout(message);
   this.message = message;
   this.lucy.hear(message);
 });
 
-Then("Lucy hears Sean's message", function () {
+Then("{listener} hears {shouter}'s message", function (_, __) {
   expect(this.lucy.messages).to.include(this.message);
 });
