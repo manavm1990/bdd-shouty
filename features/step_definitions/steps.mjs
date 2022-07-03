@@ -2,8 +2,8 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import Person from "../../app/models/Person.js";
 import { expect } from "chai";
 
-Given("Lucy is located {int} meters from Sean", function (distance) {
-  // {int} is automatically passed in from Gherkin verbiage where it mentions '15'.
+Given("Lucy is located {int} meter(s) from Sean", function (distance) {
+  // {int} is automatically passed in from Gherkin verbiage where it mentions '15', for example
   this.lucy = new Person();
   this.sean = new Person();
   this.lucy.moveTo(distance);
