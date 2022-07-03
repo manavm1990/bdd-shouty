@@ -1,11 +1,21 @@
 export default class {
+  #messages;
+
   constructor(name) {
     this.name = name;
+    this.#messages = [];
+  }
+
+  get messages() {
+    return this.#messages;
   }
 
   moveTo() {}
-  shout() {}
-  get messages() {
-    return ["Free 🥯s at Sean's!"];
+  shout(newMessage) {
+    this.#messages.push(newMessage);
+  }
+
+  hear(message) {
+    this.#messages.push(message);
   }
 }
