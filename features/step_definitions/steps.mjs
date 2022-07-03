@@ -1,5 +1,6 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import Person from "../../app/models/Person.js";
+import { expect } from "chai";
 
 Given("Lucy is located {int} meters from Sean", function (distance) {
   // {int} is automatically passed in from Gherkin verbiage where it mentions '15'.
@@ -10,11 +11,9 @@ Given("Lucy is located {int} meters from Sean", function (distance) {
 
 When("Sean shouts, {string}", function (message) {
   this.sean.shout(message);
+  this.message = message;
 });
 
-Then(
-  "Lucy hears Sean's message",
-  () =>
-    // Write code here that turns the phrase above into concrete actions
-    "pending"
-);
+Then("Lucy hears Sean's message", function () {
+  expect(this.lucy.messages).to.include(this.message);
+});
