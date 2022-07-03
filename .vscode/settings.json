@@ -17,5 +17,6 @@
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "javascript.validate.enable": false,
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "cSpell.words": ["Shouty"]
 }
