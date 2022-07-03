@@ -1,0 +1,1 @@
+export default "--publish-quiet";
