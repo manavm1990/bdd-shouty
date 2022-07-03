@@ -5,6 +5,7 @@ specifiers:
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
   eslint-config-xo: ^0.41.0
+  eslint-plugin-cucumber: ^2.0.0
   jest: ^28.1.2
   prettier: ^2.7.1
 
@@ -13,6 +14,7 @@ devDependencies:
   eslint: 8.19.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
   eslint-config-xo: 0.41.0_eslint@8.19.0
+  eslint-plugin-cucumber: 2.0.0
   jest: 28.1.2
   prettier: 2.7.1
 
@@ -1382,6 +1384,13 @@ packages:
     dependencies:
       confusing-browser-globals: 1.0.11
       eslint: 8.19.0
+    dev: true
+
+  /eslint-plugin-cucumber/2.0.0:
+    resolution: {integrity: sha512-x5nowfeAiGxmT9WehHUhp3cMqiaVmUf6QalFRiWMPG6Uq6bEDkYNHA+jsHnvF4TBNNaO5zFb+4UMQKU7R50anA==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      lodash: 4.17.21
     dev: true
 
   /eslint-scope/7.1.1:
