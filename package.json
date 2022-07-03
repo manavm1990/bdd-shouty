@@ -3,19 +3,12 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon -I --watch app",
-    "test": "jest"
+    "test": "cucumber-js"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.6",
-    "@babel/preset-env": "^7.18.6",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-xo": "^0.41.0",
-    "eslint-plugin-jest": "^26.5.3",
-    "jest": "^28.1.2",
-    "nodemon": "^2.0.18",
-    "prettier": "^2.7.1",
-    "typescript": "^4.7.4"
+    "prettier": "^2.7.1"
   }
 }
