@@ -1,20 +1,16 @@
 import { Given, Then, When } from "@cucumber/cucumber";
+import Person from "../../app/models/Person.js";
 
-Given("Lucy is located {int} meters from Sean", (distance) => {
+Given("Lucy is located {int} meters from Sean", function (distance) {
   // {int} is automatically passed in from Gherkin verbiage where it mentions '15'.
-  console.log(distance);
-
-  // Given('Lucy is located {float} meters from Sean', function (float) {
-  // Write code here that turns the phrase above into concrete actions
-  return "pending";
+  this.lucy = new Person();
+  this.sean = new Person();
+  this.lucy.moveTo(distance);
 });
 
-When(
-  "Sean shouts, {string}",
-  (string) =>
-    // Write code here that turns the phrase above into concrete actions
-    "pending"
-);
+When("Sean shouts, {string}", function (message) {
+  this.sean.shout(message);
+});
 
 Then(
   "Lucy hears Sean's message",
