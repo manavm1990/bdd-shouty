@@ -21,3 +21,7 @@ When("{shouter} shouts, {string}", function (_, message) {
 Then("{listener} hears {shouter}'s message(s)", function (_, __) {
   expect(this.lucy.messages).to.include.members(this.messages);
 });
+
+Then("{listener} does not hear {shouter}'s message", function (_, __) {
+  expect(this.lucy.messages).to.not.include.members(this.messages);
+});
