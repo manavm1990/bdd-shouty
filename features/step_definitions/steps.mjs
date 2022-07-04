@@ -13,10 +13,11 @@ Given(
 
 When("{shouter} shouts, {string}", function (_, message) {
   this.sean.shout(message);
-  this.message = message;
   this.lucy.hear(message);
+  this.messages = [];
+  this.messages.push(message);
 });
 
-Then("{listener} hears {shouter}'s message", function (_, __) {
-  expect(this.lucy.messages).to.include(this.message);
+Then("{listener} hears {shouter}'s message(s)", function (_, __) {
+  expect(this.lucy.messages).to.include.members(this.messages);
 });
