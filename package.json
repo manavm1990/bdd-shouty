@@ -3,7 +3,8 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
-    "test": "cucumber-js -f @cucumber/pretty-formatter"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cucumber": "cucumber-js -f @cucumber/pretty-formatter"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.4.0",
