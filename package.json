@@ -3,7 +3,7 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "cucumber": "cucumber-js -f @cucumber/pretty-formatter"
   },
   "devDependencies": {
