@@ -20,4 +20,14 @@ describe("Person", () => {
 
     expect(subscribeSpy).toHaveBeenCalledWith(person);
   });
+
+  it("broadcasts a message to the network", () => {
+    const person = new Person("John", network);
+    const message = "Free 🥯s!";
+
+    person.shout(message);
+
+    expect(broadcastSpy).toHaveBeenCalledWith(message);
+  });
+
 });
