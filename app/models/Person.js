@@ -2,8 +2,13 @@ export default class Person {
   #messages;
   static RANGE = 15;
 
-  constructor(name) {
+  constructor(name, network) {
     this.name = name;
+    this.network = network;
+
+    // Add person to network
+    this.network.subscribe(this);
+
     this.#messages = [];
   }
 
@@ -16,7 +21,7 @@ export default class Person {
   }
 
   shout(newMessage) {
-    this.#messages.push(newMessage);
+    this.network.broadcast(newMessage);
   }
 
   hear(message) {
