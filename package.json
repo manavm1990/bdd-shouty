@@ -3,8 +3,7 @@
   "main": "app/index.js",
   "type": "module",
   "scripts": {
-    "test": "jest --watch",
-    "cucumber": "cucumber-js -f @cucumber/pretty-formatter"
+    "test": "jest && cucumber-js -f @cucumber/pretty-formatter"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
