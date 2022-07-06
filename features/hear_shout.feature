@@ -2,6 +2,8 @@ Feature: Hear shout
 
   Shouty allows users to "hear" other users "shouts" as long as they are close enough to each other.
 
+Rule: Shouts can by heard by other users that are close enough to the one that shouted.
+
   Scenario: Listener 👂🏾 is within range and hears the shout 📢
     Given Lucy is located 15 meters from Sean
     When Sean shouts, "Free 🥯s at Sean's!"
