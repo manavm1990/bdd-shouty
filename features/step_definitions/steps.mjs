@@ -22,9 +22,17 @@ When("{shouter} shouts, {string}", function (_, message) {
 });
 
 Then("{listener} hears {shouter}'s message(s)", function (_, __) {
-  expect(this.lucy.messages).toEqual(this.messages);
+  const expectHelper = () => {
+    expect(this.lucy.messages).toEqual(this.messages);
+  };
+
+  expectHelper();
 });
 
 Then("{listener} does not hear {shouter}'s message", function (_, __) {
-  expect(this.lucy.messages).not.toEqual(this.messages);
+  const expectHelper = () => {
+    expect(this.lucy.messages).not.toEqual(this.messages);
+  };
+
+  expectHelper();
 });
