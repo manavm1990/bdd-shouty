@@ -1,8 +1,10 @@
+import Network from "./Network.js";
+
 export default class Person {
   #messages;
   static RANGE = 15;
 
-  constructor(name, network) {
+  constructor(name, network = new Network()) {
     this.name = name;
     this.network = network;
 
