@@ -3,7 +3,7 @@ import { expect } from "expect";
 import Person from "../../app/models/Person.js";
 
 Given(
-  "{listener} is located/standing {int} meter(s) from {shouter}",
+  "a person named {listener} is located/standing {int} meter(s) from a person named {shouter}",
   function (_, distance, __) {
     this.lucy = new Person("Lucy");
     this.sean = new Person("Sean");
