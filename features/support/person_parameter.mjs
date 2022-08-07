@@ -3,7 +3,8 @@ import Person from "../../app/models/Person.js";
 
 defineParameterType({
   name: "listener",
-  regexp: /Lucy|Sean/,
+  regexp: /[a-zA-Z]+/,
+  type: Person,
   transformer(name) {
     return new Person(name);
   },
@@ -11,7 +12,8 @@ defineParameterType({
 
 defineParameterType({
   name: "shouter",
-  regexp: /Lucy|Sean/,
+  regexp: /[a-zA-Z]+/,
+  type: Person,
   transformer(name) {
     return new Person(name);
   },
