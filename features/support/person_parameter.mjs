@@ -1,11 +1,10 @@
 import { defineParameterType } from "@cucumber/cucumber";
 
-defineParameterType({
-  name: "listener",
-  regexp: /[a-zA-Z]+/,
-});
+const names = ["listener", "shouter"];
 
-defineParameterType({
-  name: "shouter",
-  regexp: /[a-zA-Z]+/,
+names.forEach((name) => {
+  defineParameterType({
+    name, // name of the parameter type
+    regexp: /[a-zA-Z]+/, // regular expression to match the parameter
+  });
 });
