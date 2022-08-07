@@ -3,27 +3,27 @@ import { expect } from "expect";
 import Person from "../../app/models/Person.js";
 
 Given(
-  "{listener} is located/standing {int} meter(s) from {shouter}",
-  function (_, distance, __) {
-    this.lucy = new Person("Lucy");
-    this.sean = new Person("Sean");
+  "{listener} is located/standing {float} meter(s) from {shouter}",
+  function (listener, distance, shouter) {
+    this.listener = new Person(listener);
+    this.shouter = new Person(shouter);
 
-    this.lucy.moveTo(distance);
+    this.listener.moveTo(distance);
 
     this.messages = [];
   }
 );
 
 When("{shouter} shouts, {string}", function (_, message) {
-  this.sean.shout(message);
-  this.lucy.hear(message);
+  this.shouter.shout(message);
+  this.listener.hear(message);
 
   this.messages.push(message);
 });
 
 Then("{listener} hears {shouter}'s message(s)", function (_, __) {
   const expectHelper = () => {
-    expect(this.lucy.messages).toEqual(this.messages);
+    expect(this.listener.messages).toEqual(this.messages);
   };
 
   expectHelper();
@@ -31,7 +31,7 @@ Then("{listener} hears {shouter}'s message(s)", function (_, __) {
 
 Then("{listener} does not hear {shouter}'s message", function (_, __) {
   const expectHelper = () => {
-    expect(this.lucy.messages).not.toEqual(this.messages);
+    expect(this.listener.messages).not.toEqual(this.messages);
   };
 
   expectHelper();
