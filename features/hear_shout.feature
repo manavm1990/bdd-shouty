@@ -4,18 +4,12 @@ Feature: Hear shout
 
 Rule: Shouts can by heard by other users that are close enough to the one that shouted.
 
-  Scenario: Listener 👂🏾 is within range and hears the shout 📢
-    Given a person named Lucy is located 15 meters from a person named Sean
+  Scenario: Listener 👂🏾 is within range
+    Given Lucy is located 15 meters from Sean
     When Sean shouts, "Free 🥯s at Sean's!"
     Then Lucy hears Sean's message
 
-    Scenario: Listener 👂🏾 is within range and hears multiple shouts 📢
-      Given a person named Lucy is located 15 meters from a person named Sean
-      When Sean shouts, "Free ☕!"
-      And Sean shouts, "1/2 price 🥯s at Sean's!"
-      Then Lucy hears Sean's messages
-
-    Scenario: Listener 👂🏾 is outside range and does not hear the shout 📢
-      Given a person named Lucy is located 25 meters from a person named Sean
+    Scenario: Listener 👂🏾 is outside range
+      Given Lucy is located 25 meters from Sean
       When Sean shouts, "1/2 Price ☕ at Sean's!"
       Then Lucy does not hear Sean's message
