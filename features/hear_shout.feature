@@ -8,8 +8,11 @@ Rule: Shouts can by heard by other users that are close enough to the one that s
     Given the range is 100
     And Sean is located at 0
     And Lucy is located at 50
-    When Sean shouts
-    Then Lucy hears Sean's shout
+    When Sean shouts:
+      | Hello      |
+      | You fool   |
+      | I love you |
+    Then Lucy hears Sean's shouts
 
   Scenario: Listener 👂🏾 is outside range
     Given the range is 100

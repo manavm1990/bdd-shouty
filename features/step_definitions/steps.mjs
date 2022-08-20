@@ -24,7 +24,16 @@ When("{shouter} shouts, {string}", function (name, message) {
   this.persons[name].shout(message);
 });
 
-Then("{listener} hears {shouter}'s shout", function (listener, shouter) {
+When("{shouter} shouts:", function (name, dataTable) {
+  dataTable
+    .raw()
+    .flat()
+    .forEach((message) => {
+      this.persons[name].shout(message);
+    });
+});
+
+Then("{listener} hears {shouter}'s shout(s)", function (listener, shouter) {
   const expectHelper = () => {
     expect(this.persons[listener].messages).toEqual(
       this.persons[shouter].shouts
