@@ -2,43 +2,48 @@ import Person from "../models/Person";
 
 describe("Person", () => {
   let network;
+  let person;
+
   let subscribeSpy;
   let broadcastSpy;
 
   beforeEach(() => {
     network = {
+      range: 15,
       subscribe() {},
       broadcast() {},
     };
+
+    person = new Person({ name: "John", network });
 
     subscribeSpy = jest.spyOn(network, "subscribe");
     broadcastSpy = jest.spyOn(network, "broadcast");
   });
 
   it("subscribes to the network", () => {
-    const person = new Person("John", network);
+    const newPerson = new Person(person);
 
-    expect(subscribeSpy).toHaveBeenCalledWith(person);
+    expect(subscribeSpy).toHaveBeenCalledWith(newPerson);
   });
 
   it("broadcasts a message to the network", () => {
-    const person = new Person("John", network);
+    const newPerson = new Person(person);
     const message = "Free 🥯s!";
 
-    person.shout(message);
+    newPerson.shout(message);
 
     expect(broadcastSpy).toHaveBeenCalledWith(message);
   });
 
-  it("hears a message from the network", () => {
-    const person = new Person("John", network);
+  it("hears a message from the network when in range", () => {
+    const newPerson = new Person(person);
     const message = "Free 🥯s!";
 
     // Move person into range of network
-    person.moveTo(10);
+    newPerson.moveTo(10);
 
-    person.hear(message);
+    newPerson.hear(message);
 
-    expect(person.messages).toEqual([message]);
+    expect(newPerson.messages).toEqual([message]);
   });
 });
