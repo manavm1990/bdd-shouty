@@ -24,6 +24,16 @@ When("{shouter} shouts, {string}", function (name, message) {
   this.persons[name].shout(message);
 });
 
+// Long message with DocString
+When("{shouter} shouts,", function (name, message) {
+  try {
+    this.persons[name].shout(message);
+  } catch (error) {
+    this.error = error;
+  }
+});
+
+// Multiple messages with DataTable
 When("{shouter} shouts:", function (name, dataTable) {
   dataTable
     .raw()
@@ -50,6 +60,18 @@ Then(
       expect(this.persons[listener].messages).not.toEqual(
         this.persons[shouter].shouts
       );
+    };
+
+    expectHelper();
+  }
+);
+
+Then(
+  "an error message that includes the words 'message is too long' is received",
+  function () {
+    const expectHelper = () => {
+      expect(this.error).toBeDefined();
+      expect(this.error.message.toLowerCase()).toContain("message is too long");
     };
 
     expectHelper();
