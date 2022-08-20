@@ -37,13 +37,27 @@ describe("Person", () => {
 
   it("hears a message from the network when in range", () => {
     const newPerson = new Person(person);
-    const message = "Free 🥯s!";
+    const inRangeMsg = "Free 🥯s!";
 
     // Move person into range of network
     newPerson.moveTo(10);
 
-    newPerson.hear(message);
+    newPerson.hear(inRangeMsg);
 
-    expect(newPerson.messages).toEqual([message]);
+    expect(newPerson.messages).toEqual([inRangeMsg]);
+  });
+
+  it("doesn't hear a message from the network when out of range", () => {
+    const newPerson = new Person(person);
+    const inRangeMsg = "Free 🥯s!";
+
+    // Move person into range of network
+    newPerson.moveTo(100);
+
+    newPerson.hear(inRangeMsg);
+
+    expect(newPerson.messages).toEqual(
+      expect.not.arrayContaining([inRangeMsg])
+    );
   });
 });
