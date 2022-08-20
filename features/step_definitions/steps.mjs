@@ -16,11 +16,15 @@ Given("{person} is located/standing at {float}", function (name, position) {
   this.persons[name] = new Person({ name, network: this.network, position });
 });
 
-When("{person} shouts(,) {string}", function (name, message) {
+When("{shouter} shouts", function (name) {
+  this.persons[name].shout(`Hello World! It's me, {name}!`);
+});
+
+When("{shouter} shouts, {string}", function (name, message) {
   this.persons[name].shout(message);
 });
 
-Then("{listener} hears {shouter}'s message(s)", function (listener, shouter) {
+Then("{listener} hears {shouter}'s shout", function (listener, shouter) {
   const expectHelper = () => {
     expect(this.persons[listener].messages).toEqual(
       this.persons[shouter].shouts
@@ -31,7 +35,7 @@ Then("{listener} hears {shouter}'s message(s)", function (listener, shouter) {
 });
 
 Then(
-  "{listener} does not hear {shouter}'s message",
+  "{listener} does not hear {shouter}'s shout",
   function (listener, shouter) {
     const expectHelper = () => {
       expect(this.persons[listener].messages).not.toEqual(
