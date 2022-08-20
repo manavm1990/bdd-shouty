@@ -35,6 +35,15 @@ describe("Person", () => {
     expect(broadcastSpy).toHaveBeenCalledWith(message);
   });
 
+  it("moves to position", () => {
+    const newPerson = new Person(person);
+    const position = 10;
+
+    newPerson.moveTo(position);
+
+    expect(newPerson.position).toBe(position);
+  });
+
   it("hears a message from the network when in range", () => {
     const newPerson = new Person(person);
     const inRangeMsg = "Free 🥯s!";
