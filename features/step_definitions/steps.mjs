@@ -1,40 +1,44 @@
-import { Given, Then, When } from "@cucumber/cucumber";
+import { Before, Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "expect";
-import Person from "../../app/models/Person.js";
 import Network from "../../app/models/Network.js";
+import Person from "../../app/models/Person.js";
 
-Given(
-  "{listener} is located/standing {float} meter(s) from {shouter}",
-  function (listener, distance, shouter) {
-    this.network = new Network();
-    this.listener = new Person(listener, this.network);
-    this.shouter = new Person(shouter, this.network);
+Before(function () {
+  // We only need access to one person at a time and always by name...
+  this.persons = {};
+});
 
-    this.listener.moveTo(distance);
+Given("the range is {int}", function (range) {
+  this.network = new Network(range);
+});
 
-    // Track the messages that are broadcast in the test
-    this.messages = [];
+Given("{person} is located/standing at {float}", function (name, position) {
+  this.persons[name] = new Person({ name, network: this.network, position });
+});
+
+When("{person} shouts(,) {string}", function (name, message) {
+  this.persons[name].shout(message);
+});
+
+Then("{listener} hears {shouter}'s message(s)", function (listener, shouter) {
+  const expectHelper = () => {
+    expect(this.persons[listener].messages).toEqual(
+      this.persons[shouter].shouts
+    );
+  };
+
+  expectHelper();
+});
+
+Then(
+  "{listener} does not hear {shouter}'s message",
+  function (listener, shouter) {
+    const expectHelper = () => {
+      expect(this.persons[listener].messages).not.toEqual(
+        this.persons[shouter].shouts
+      );
+    };
+
+    expectHelper();
   }
 );
-
-When("{shouter} shouts, {string}", function (_, message) {
-  this.shouter.shout(message);
-
-  this.messages.push(message);
-});
-
-Then("{listener} hears {shouter}'s message(s)", function (_, __) {
-  const expectHelper = () => {
-    expect(this.listener.messages).toEqual(this.messages);
-  };
-
-  expectHelper();
-});
-
-Then("{listener} does not hear {shouter}'s message", function (_, __) {
-  const expectHelper = () => {
-    expect(this.listener.messages).not.toEqual(this.messages);
-  };
-
-  expectHelper();
-});

@@ -1,6 +1,6 @@
 import { defineParameterType } from "@cucumber/cucumber";
 
-const names = ["listener", "shouter"];
+const names = ["person", "listener", "shouter"];
 
 names.forEach((name) => {
   defineParameterType({
