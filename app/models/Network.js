@@ -1,8 +1,9 @@
 export default class Network {
   #listeners;
 
-  constructor(range = 15) {
+  constructor(range = 15, maxLen = 180) {
     this.range = range;
+    this.maxLen = maxLen;
 
     this.#listeners = [];
   }
@@ -12,6 +13,12 @@ export default class Network {
   }
 
   broadcast(message) {
+    if (message.length > this.maxLen) {
+      throw new Error(
+        `Message is too long (${message.length} > ${this.maxLen})`
+      );
+    }
+
     this.#listeners.forEach((listener) => listener.hear(message));
   }
 }

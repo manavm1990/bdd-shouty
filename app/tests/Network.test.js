@@ -1,6 +1,18 @@
 import Network from "../models/Network.js";
 
-it("broadcasts a message to all listener", () => {
+it("throws an error if a message is over 140 characters long", () => {
+  const network = new Network(1, 140);
+
+  const msg = "This is a short message";
+
+  expect(() => network.broadcast(msg)).not.toThrow();
+
+  expect(() => {
+    network.broadcast("a".repeat(141));
+  }).toThrow();
+});
+
+it("broadcasts a message that's not too long to all listeners", () => {
   const network = new Network();
   const shout = "Free 🥯s!";
 
